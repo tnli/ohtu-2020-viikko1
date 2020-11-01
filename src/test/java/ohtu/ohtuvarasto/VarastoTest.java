@@ -82,5 +82,62 @@ public class VarastoTest {
 		assertEquals(6, saatuMaara, vertailuTarkkuus);
 	}
 	
+	@Test
+	public void lisaaVarastoonNegatiivinenMaara() {
+		varasto.lisaaVarastoon(-5);
+		
+		// varastossa pitäisi olla edelleenkin 0
+		assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+	}
+	
+	@Test
+	public void otaVarastostaNegatiivinenMaara() {
+		varasto.lisaaVarastoon(5);
+		
+		double saatuMaara = varasto.otaVarastosta(-5);
+		
+		// Otetaan negatiivinen määrä, joten saatu määrä pitäisi olla 0
+		assertEquals(0, saatuMaara, vertailuTarkkuus);
+	}
+	
+	@Test
+	public void testaaToStringia() {
+		varasto.lisaaVarastoon(5);
+		
+		String testi = "saldo = 5.0, vielä tilaa 5.0";
+		
+		assertEquals(testi, varasto.toString());
+	}
+	
+	@Test
+	public void negatiivinenVarastoOnNollakokoinen() {
+		varasto = new Varasto(-10);
+		
+		// negatiivisella arvolla konstruoidun varaston tilavuus pitäisi olla 0.0
+		assertEquals(0.0, varasto.getTilavuus(), vertailuTarkkuus);
+	}
+	
+	@Test
+	public void kuormitettuVarastoNegatiivinenTilavuus() {
+		varasto = new Varasto(-10, 0);
+		
+		// negatiivisella tilavuudella konstruoidun varaston tilavuus pitäisi olla 0.0
+		assertEquals(0.0, varasto.getTilavuus(), vertailuTarkkuus);
+	}
+	
+	@Test
+	public void kuormitettuVarastoTilavuusOikein() {
+		varasto = new Varasto(5, 0);
+		
+		assertEquals(5, varasto.getTilavuus(), vertailuTarkkuus);
+	}
+	
+	@Test
+	public void kuormitettuVarastoNegatiivinenAlkusaldo() {
+		varasto = new Varasto(10, -10);
+		
+		// negatiivisen alkuSaldon pitäisi olla nolla
+		assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+	}
 
 }
