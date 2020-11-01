@@ -1,0 +1,8 @@
+# gitignore .tmp
+*.tmp
+
+# gitignore build/
+build/
+
+#gitignore .gradle/
+.gradle/
