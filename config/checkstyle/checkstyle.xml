@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+
+	<module name="TreeWalker">
+		<property name="fileExtensions" value="java"/>
+		
+		<module name="MethodLength">
+			<property name="tokens" value="METHOD_DEF"/>
+			<property name="max" value="15"/>
+		</module>
+		
+		<module name="NestedIfDepth">
+			<property name="max" value="1"/>
+		</module>
+		
+		<module name="NestedForDepth">
+			<property name="max" value="0"/>
+		</module>
+		
+		<module name="Indentation"/>
+		
+		<module name="LeftCurly"/>
+		
+		<module name="CyclomaticComplexity">
+			<property name="max" value="4"/>
+		</module>
+		
+	</module>
+ 
+</module>
+
+<!-- 
+# metodien pituus max 15 riviä (tämä ja seuraavat säännöt määritellään moduulin tree walker sisälle)
+
+# ei yli yhtä sisäkkäisiä if-komentoja
+
+# ei sisäkkäisiä for-komentoja, seuraavan siis pitäisi aiheuttaa virhe:
+for( int i=0; i<1; i++ ) {
+  for( int j=0; i<j; j++ ) {
+    System.out.println("virhe");
+  } 
+}
+
+# koodi on oikein sisennettyä
+
+# lohkon avaava aaltosulku on aina rivin lopussa, eli esim. ehtolauseissa aaltosulku tulee merkitä
+if ( ehto ) 
+{
+  System.out.println("virhe");
+}
+sijaan seuraavasti:
+
+if ( ehto ) {
+  System.out.println("virhe");
+}
+
+# syklomaattinen koodikompleksisuus korkeintaan 3 (selvitä mitä tarkoittaa!)
+-->
